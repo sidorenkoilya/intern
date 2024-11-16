@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <style>
+    /* Основной стиль */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e8faff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Фон с диагональным разделением */
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0fc9d8 10%, #ffffff 60%);
+      z-index: -1;
+    }
+
+    .left-section {
+      width: 50%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: black;
+    }
+
+    .back-button {
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .plan {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .plan:hover {
+      background: #e6f7ff;
+    }
+
+    .plan input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .plan h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .plan p {
+      margin: 0;
+      font-size: 14px;
+      color: gray;
+    }
+
+    .plan .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .right-section {
+      width: 50%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .payment-header img {
+      width: 150px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .payment-icons img {
+      width: 60px;
+      cursor: pointer;
+    }
+
+    .payment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .payment-form label {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .payment-form input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .save-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Ползунок для "Save card information" */
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 25px;
+      background: #ddd;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .toggle-switch::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 21px;
+      height: 21px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: #0fc9d8;
+    }
+
+    .toggle-switch.active::before {
+      left: 27px;
+    }
+
+    .summary {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .get-started {
+      padding: 15px;
+      background: #007BFF;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .get-started:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Левая секция -->
+    <div class="left-section">
+      <div class="back-button">← Back</div>
+      <h2>Choose your plan</h2>
+      <label class="plan">
+        <input type="radio" name="plan" value="Basic" data-price="Free" checked>
+        <div>
+          <h3>Basic</h3>
+          <p>The perfect way to get started and get used to our tools.</p>
+        </div>
+        <div class="price">Free</div>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="Professional" data-price="$20/month">
+        <div>
+          <h3>Professional</h3>
+          <p>The perfect way to get started and get used to our tools.</p>
+        </div>
+        <div class="price">$20/month</div>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="Team" data-price="$119/month">
+        <div>
+          <h3>Team</h3>
+          <p>The perfect way to get started and get used to our tools.</p>
+        </div>
+        <div class="price">$119/month</div>
+      </label>
+    </div>
+
+    <!-- Правая секция -->
+    <div class="right-section">
+      <div class="payment-header">
+        <img src="payment.png" alt="Payment">
+      </div>
+      <div class="payment-icons">
+        <img src="visa.png" alt="Visa">
+        <img src="mastercard.png" alt="MasterCard">
+        <img src="paypal.png" alt="PayPal">
+      </div>
+      <form class="payment-form">
+        <label>
+          Name
+          <input type="text" placeholder="Natasha Ember Watson">
+        </label>
+        <label>
+          Number
+          <input type="text" placeholder="5478 5819 5485 6887">
+        </label>
+        <div class="form-row">
+          <label>
+            MM/YY
+            <input type="text" placeholder="10/26">
+          </label>
+          <label>
+            CVV
+            <input type="text" placeholder="854">
+          </label>
+        </div>
+        <div class="save-card">
+          <span>Save card information</span>
+          <div class="toggle-switch"></div>
+        </div>
+      </form>
+      <div class="summary">
+        <p>Professional - $20/Month</p>
+      </div>
+      <button class="get-started">Get Started →</button>
+    </div>
+  </div>
+
+  <script>
+    // Обновление суммы при смене плана
+    document.querySelectorAll('input[name="plan"]').forEach(plan => {
+      plan.addEventListener('change', (e) => {
+        const selectedPlan = e.target.value;
+        const selectedPrice = e.target.getAttribute('data-price');
+        document.querySelector('.summary p').textContent = `${selectedPlan} - ${selectedPrice}`;
+      });
+    });
+
+    // Ползунок "Save card information"
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    toggleSwitch.addEventListener('click', () => {
+      toggleSwitch.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
